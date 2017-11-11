@@ -26,7 +26,7 @@ if (isset($_POST['Register'])) {
     if (!isset($_GET['s']))
         $query = "SELECT * FROM product ORDER BY product_id";
     else {
-        $productod_name = $_GET['s'];
+        $product_name = $_GET['s'];
         $query = "SELECT * FROM product WHERE name LIKE '%$product_name%'";
     }
 
@@ -128,28 +128,33 @@ if (isset($_POST['Register'])) {
                 posting = $.post("php-action/add-wishlist.php", {hidden_id: productID});
             // Put the results in a div
             posting.done(function (data) {
-                if (data === "success-cart") {
-                    swal(
-                        'Added!',
-                        'Your selected product has been added to cart',
-                        'success'
-                    ).then(function () {
-                        location.reload();
-                    });
-                } else if (data === "success-wishlist") {
-                    swal(
-                        'Added!',
-                        'Your selected product has been added to wishlist',
-                        'success'
-                    );
-                } else if (data === "already added to wishlist") {
-                    swal(
-                        'product exists!',
-                        'This product is ' + data,
-                        'warning'
-                    );
-                } else
-                    alert(data)
+                switch (data) {
+                    case "success-cart":
+                        swal(
+                            'Added!',
+                            'Your selected product has been added to cart',
+                            'success'
+                        ).then(function () {
+                            location.reload();
+                        });
+                        break;
+                    case "success-wishlist":
+                        swal(
+                            'Added!',
+                            'Your selected product has been added to wishlist',
+                            'success'
+                        );
+                        break;
+                    case "already added to wishlist":
+                        swal(
+                            'product exists!',
+                            'This product is ' + data,
+                            'warning'
+                        );
+                        break;
+                    default:
+                        alert(data);
+                }
             });
         });
     }

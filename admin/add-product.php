@@ -8,16 +8,16 @@ require_once('navbar.php');
 <div class="container">
     <form id="uploadimage" action="" method="post" class="form-horizontal" role="form">
         <div class="form-group">
-            <label class="col-sm-3 control-label">Food Name</label>
+            <label class="col-sm-3 control-label">Product Name</label>
             <div class="col-sm-9">
-                <input name="foodName" placeholder="Food Name" class="form-control" autofocus>
+                <input name="productName" placeholder="Product Name" class="form-control" autofocus>
                 <span class="help-block">For example, Thai Chicken Basil</span>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Price</label>
             <div class="col-sm-9">
-                <input name="foodPrice" placeholder="Price" class="form-control">
+                <input name="productPrice" placeholder="Price" class="form-control">
             </div>
         </div>
         <div class="form-group">
@@ -49,7 +49,7 @@ require_once('navbar.php');
             $("#message").empty();
             $('#loading').show();
             $.ajax({
-                url: "../php-action/upload.php", // Url to which the request is send
+                url: "php-action/upload.php", // Url to which the request is send
                 type: "POST",             // Type of request to be send, called as method
                 data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
                 contentType: false,       // The content type used when sending data to the server.

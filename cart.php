@@ -134,8 +134,9 @@ require_once('menu.php');
                 if (actionSelector.val() === "checkout")
                     window.location.replace("payment.php?total=" + <?= $total; ?>);
                 else {
-                    alert(data);
-                    window.location.reload();
+                    swal('Success!', data, 'success').then(function () {
+                        location.reload();
+                    });
                 }
             });
         });

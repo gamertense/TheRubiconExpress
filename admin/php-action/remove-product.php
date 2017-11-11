@@ -1,9 +1,9 @@
 <?php
 include_once '../../dbconfig.php';
 
-$id = $_POST['food_id'];
-$query = "SELECT * FROM foods WHERE food_id= $id";
-$query2 = "DELETE FROM foods WHERE food_id= $id";
+$id = $_POST['product_id'];
+$query = "SELECT * FROM product WHERE product_id= $id";
+$query2 = "DELETE FROM product WHERE product_id= $id";
 $result = mysqli_query($connect, $query);
 $row = mysqli_fetch_array($result);
 unlink("../../" . $row["image"]);

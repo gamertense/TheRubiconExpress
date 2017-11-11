@@ -2,7 +2,7 @@
 include_once '../dbconfig.php';
 
 $id = $_POST['hidden_id'];
-$query = "DELETE FROM wishlist WHERE food_id= $id";
+$query = "DELETE FROM wishlist WHERE product_id= $id";
 $result = mysqli_query($connect, $query);
 
 if ($connect->query($query) === TRUE) {
