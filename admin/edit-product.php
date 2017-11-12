@@ -38,8 +38,8 @@ if (mysqli_num_rows($result) > 0):
 endif;
 ?>
 
-<div class="container" style="width:60%;">
-    <form role="search">
+<div class="container">
+    <form role="search" style="width:50%;" class="col-xs-offset-2 col-md-offset-3">
         <div class="input-group">
             <input class="form-control" placeholder="Search" id="productSearch" data-provide="autocomplete"
                    autocomplete="off">
@@ -65,7 +65,7 @@ endif;
         if (mysqli_num_rows($result) > 0):
             while ($row = mysqli_fetch_array($result)):
                 ?>
-                <div class="col-sm-4" style="display: none;">
+                <div class="col-md-3 col-sm-4 col-xs-6 col-xss-12 product-col">
                     <article class="col-item">
                         <div class="photo">
                             <div class="options-cart-round">
