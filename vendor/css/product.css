@@ -5,11 +5,21 @@
 /*@import url(https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css);*/
 @import url(animate.min.css);
 
+.product-col {
+    height: 270px;
+    float: left;
+    border-bottom: 1px dashed #cdcdcd;
+    padding: 0;
+}
+
+.product-col:hover {
+    box-shadow: 0 0 16px #ccc;
+    border-bottom: 1px dashed #fff;
+    background-color: #fff;
+}
+
 .col-item {
-    border: 1px solid #E1E1E1;
-    background: #FFF;
-    margin-bottom: 12px;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+    padding: 5px;
 }
 
 .col-item .options {
