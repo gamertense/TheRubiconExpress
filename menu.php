@@ -16,7 +16,11 @@
     var products_JSON = [];
 </script>
 
-<nav class="navbar navbar-default">
+
+<nav class="navbar navbar-default"
+.navbar navbar-default {
+    height: 880px;  
+}>
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="index.php">Rubicon Express</a>
@@ -32,10 +36,18 @@
                             <button id="searchButton" class="btn btn-default"><i
                                         class="glyphicon glyphicon-search"></i></button>
                         </div>
+
                     </div>
                 </form>
+
             </li>
+            
         </ul>
+          <!-- category box -->
+          <?php
+            require_once('category.php');
+            ?> 
+
 
         <ul class="nav navbar-nav navbar-right">
             <?php
