@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2017 at 11:01 AM
+-- Generation Time: Nov 17, 2017 at 12:51 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -88,7 +88,7 @@ INSERT INTO `customer` (`cu_id`, `email`, `password`, `name`, `address`) VALUES
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `cu_id` int(11) DEFAULT NULL,
-  `food_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
   `orderDate` date NOT NULL,
   `quantity` int(11) DEFAULT NULL,
   `isDelivered` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = not delivered, 1 otherwise'
@@ -98,13 +98,13 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `cu_id`, `food_id`, `orderDate`, `quantity`, `isDelivered`) VALUES
+INSERT INTO `orders` (`order_id`, `cu_id`, `product_id`, `orderDate`, `quantity`, `isDelivered`) VALUES
 (1, 3, 2, '2017-01-22', 1, 0),
-(2, 1, 2, '2017-01-22', 2, 0),
+(2, 1, 2, '2017-01-22', 2, 1),
 (3, 2, 2, '2017-02-22', 3, 0),
 (4, 2, 2, '2017-03-22', 3, 0),
 (5, 2, 2, '2017-03-22', 2, 0),
-(6, 1, 2, '2017-04-22', 2, 0),
+(6, 1, 2, '2017-04-22', 2, 1),
 (7, 1, 2, '2017-04-22', 3, 0),
 (8, 2, 2, '2017-04-22', 2, 0),
 (9, 3, 2, '2017-04-22', 2, 0),
@@ -207,7 +207,7 @@ ALTER TABLE `customer`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `cu_id` (`cu_id`),
-  ADD KEY `food_id` (`food_id`);
+  ADD KEY `product_id` (`product_id`) USING BTREE;
 
 --
 -- Indexes for table `product`
@@ -280,7 +280,7 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`cu_id`) REFERENCES `customer` (`cu_id`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`food_id`) REFERENCES `product` (`product_id`);
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
 
 --
 -- Constraints for table `wishlist`
