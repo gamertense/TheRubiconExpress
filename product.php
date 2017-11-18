@@ -78,6 +78,7 @@ if (isset($_POST['Register'])) {
         ?>
     </form>
 </div>
+
 <footer>
     <div class="footer" id="footer">
         <div class="container">
@@ -150,12 +151,8 @@ if (isset($_POST['Register'])) {
 
                 </div>
             </div>
-            <!--/.row-->
         </div>
-        <!--/.container-->
     </div>
-
-    <!--/.footer-->
     <div class="footer-bottom">
         <div class="container">
             <div class="col-md-6">
