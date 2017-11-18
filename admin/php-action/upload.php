@@ -15,7 +15,7 @@ if (isset($_FILES["file"]["type"])) {
                 echo $_FILES["file"]["name"] . " <span id='invalid'><b>already exists.</b></span> ";
             } else {
                 $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
-                $targetPath = "../product-images/" . $_FILES['file']['name']; // Target path where file is to be stored
+                $targetPath = "../../product-images/" . $_FILES['file']['name']; // Target path where file is to be stored
                 move_uploaded_file($sourcePath, $targetPath); // Moving Uploaded file
                 echo "<span id='success'>Image Uploaded Successfully...!!</span><br/>";
 //                echo "<br/><b>File Name:</b> " . $_FILES["file"]["name"] . "<br>";
@@ -27,15 +27,16 @@ if (isset($_FILES["file"]["type"])) {
 
                 $productName = $_POST['productName']; //here getting result from the post array after submitting the form.
                 $productPrice = $_POST['productPrice'];
+                $categoryID = $_POST['category'];
                 //Fix file target in database
                 $targetPath = "product-images/" . $_FILES['file']['name']; // Target path where file is to be stored
 
                 try {
-                    $stmt = $connect->prepare("INSERT INTO product (name, image, price) VALUES ('$productName', '$targetPath', $productPrice)");
+                    $stmt = $connect->prepare("INSERT INTO product (name, image, price, category_id) VALUES ('$productName', '$targetPath', $productPrice, $categoryID)");
 
 
                     if ($stmt->execute()) {
-                        echo "product has been added successfully!";
+                        echo "Product has been added successfully!";
                     } else {
                         echo "Query Problem";
                     }

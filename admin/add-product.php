@@ -3,6 +3,7 @@
 
 <?php
 require_once('navbar.php');
+include_once '../dbconfig.php';
 ?>
 
 <div class="container">
@@ -12,6 +13,20 @@ require_once('navbar.php');
             <div class="col-sm-9">
                 <input name="productName" placeholder="Product Name" class="form-control" autofocus>
                 <span class="help-block">For example, iPhone X</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Product Category</label>
+            <div class="col-sm-9">
+                <select class="form-control" name="category">
+                    <?php
+                    $query = "SELECT * FROM category";
+                    $result = mysqli_query($connect, $query);
+                    while ($row = mysqli_fetch_array($result)):
+                        ?>
+                        <option value="<?= $row['category_id'] ?>"><?= $row['category_name'] ?></option>
+                    <?php endwhile; ?>
+                </select>
             </div>
         </div>
         <div class="form-group">
