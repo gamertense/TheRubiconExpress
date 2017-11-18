@@ -23,7 +23,10 @@ if (isset($_POST['Register'])) {
 <div class="container">
     <h2 align="center">Select Products</h2><br>
     <?php
-    if (!isset($_GET['s']))
+    if (isset($_GET['catID'])) {
+        $categoryID = $_GET['catID'];
+        $query = "SELECT * FROM product WHERE category_id = $categoryID";
+    } else if (!isset($_GET['s']))
         $query = "SELECT * FROM product ORDER BY product_id";
     else {
         $product_name = $_GET['s'];
