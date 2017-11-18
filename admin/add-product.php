@@ -11,7 +11,7 @@ require_once('navbar.php');
             <label class="col-sm-3 control-label">Product Name</label>
             <div class="col-sm-9">
                 <input name="productName" placeholder="Product Name" class="form-control" autofocus>
-                <span class="help-block">For example, Thai Chicken Basil</span>
+                <span class="help-block">For example, iPhone X</span>
             </div>
         </div>
         <div class="form-group">
@@ -23,7 +23,7 @@ require_once('navbar.php');
         <div class="form-group">
             <label class="col-sm-3 control-label">Image File</label>
             <div class="col-sm-9 col-sm-offset-3">
-                <div id="image_preview"><img id="previewing" src="img/noimage.png"/></div>
+                <div id="image_preview"><img id="previewing" src="../images/no-image.png"></div>
                 <input type="file" name="file" id="file" required/>
                 <div id="message"></div>
             </div>
