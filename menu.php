@@ -18,172 +18,168 @@
 
 
 <nav class="navbar navbar-default"
-.navbar navbar-default {
-    height: 880px;  
-}>
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">Rubicon Express</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li id="menu1"><a href="product.php">Select Products</a></li>
-            <li>
-                <form class="navbar-form" role="search">
-                    <div class="input-group">
-                        <input class="form-control" placeholder="Search" id="productSearch" data-provide="autocomplete"
-                               autocomplete="off">
-                        <div class="input-group-btn">
-                            <button id="searchButton" class="btn btn-default"><i
-                                        class="glyphicon glyphicon-search"></i></button>
-                        </div>
-
+<div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="index.php">Rubicon Express</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li id="menu1"><a href="product.php">Select Products</a></li>
+        <li>
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input class="form-control" placeholder="Search" id="productSearch" data-provide="autocomplete"
+                           autocomplete="off">
+                    <div class="input-group-btn">
+                        <button id="searchButton" class="btn btn-default"><i
+                                    class="glyphicon glyphicon-search"></i></button>
                     </div>
-                </form>
 
-            </li>
-            
-        </ul>
-          <!-- category box -->
-          <?php
+                </div>
+            </form>
+        </li>
+        <li>
+            <!-- category box -->
+            <?php
             require_once('category.php');
-            ?> 
+            ?>
+        </li>
+    </ul>
 
+    <ul class="nav navbar-nav navbar-right">
+        <?php
+        session_start();
+        include_once 'dbconfig.php';
 
-        <ul class="nav navbar-nav navbar-right">
-            <?php
-            session_start();
-            include_once 'dbconfig.php';
+        $query = "SELECT * FROM product ORDER BY product_id";
+        $result = mysqli_query($connect, $query);
+        if (mysqli_num_rows($result) > 0):
+            while ($row = mysqli_fetch_array($result)): ?>
+                <script>products_JSON.push("<?php echo $row["name"]; ?>");</script>
+                <?php
+            endwhile;
+        endif;
 
-            $query = "SELECT * FROM product ORDER BY product_id";
-            $result = mysqli_query($connect, $query);
-            if (mysqli_num_rows($result) > 0):
-                while ($row = mysqli_fetch_array($result)): ?>
-                    <script>products_JSON.push("<?php echo $row["name"]; ?>");</script>
-                    <?php
-                endwhile;
-            endif;
+        if (!isset($_SESSION["cu_id"])):
+            $delcom = "nullx";
+            ?>
 
-            if (!isset($_SESSION["cu_id"])): 
-                $delcom = "nullx";
-                ?>
+            <script>var isLogin = false;</script>
+            <li><a href="signup.php">Register</a></li>
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">Log In <span
+                            class="caret"></span></a>
+                <ul class="dropdown-menu dropdown-lr" role="menu">
+                    <div class="col-lg-12">
+                        <div class="text-center"><h3><b>Log In</b></h3></div>
+                        <form id="loginForm" method="post">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input name="email" type="email" tabindex="1" class="form-control"
+                                       placeholder="Email" value="" autocomplete="off" required>
+                            </div>
 
-                <script>var isLogin = false;</script>
-                <li><a href="signup.php">Register</a></li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Log In <span
-                                class="caret"></span></a>
-                    <ul class="dropdown-menu dropdown-lr" role="menu">
-                        <div class="col-lg-12">
-                            <div class="text-center"><h3><b>Log In</b></h3></div>
-                            <form id="loginForm" method="post">
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input name="email" type="email" tabindex="1" class="form-control"
-                                           placeholder="Email" value="" autocomplete="off" required>
-                                </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" tabindex="2"
+                                       class="form-control" placeholder="Password" autocomplete="off" required>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" name="password" tabindex="2"
-                                           class="form-control" placeholder="Password" autocomplete="off" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <!--<div class="col-xs-7">
-                                            <input type="checkbox" tabindex="3" name="remember" id="remember">
-                                            <label for="remember"> Remember Me</label>
-                                        </div>-->
-                                        <div class="col-xs-5 pull-right">
-                                            <input type="submit" id="login-submit" tabindex="4"
-                                                   class="form-control btn btn-success" value="Log In">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--<div class="form-group">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="text-center">
-                                                <a href="http://phpoll.com/recover" tabindex="5"
-                                                   class="forgot-password">Forgot Password?</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>-->
-                            </form>
-                        </div>
-                    </ul>
-                </li>
-            <?php
-            // If a user has logged in.
-            else: ?>
-                <script>var isLogin = true;</script>
-                <li>
-                    <button id="wishBtn" class="btn btn-default btn-lg btn-link">
-                        <span class="glyphicon glyphicon-heart"></span>
-                    </button>
-                </li>
-                <li>
-                    <button id="cartBtn" class="btn btn-default btn-lg btn-link">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>
-                    </button>
-                    <span class="badge badge-notify"><?php
-                        $cu_id = $_SESSION["cu_id"];
-                        $query = "select COUNT(cart_id) from cart where cu_id = $cu_id";
-                        $result = mysqli_query($connect, $query);
-                        $row = mysqli_fetch_array($result);
-                        $items_count = $row['COUNT(cart_id)'];
-                        echo $items_count ?>
-                </span>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <?php
-                        $delcom = $_SESSION['name'];
-                        ?>
-                        <strong><?= $_SESSION['name']; ?></strong>
-                        <span class="glyphicon glyphicon-chevron-down"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <div class="navbar-login">
+                            <div class="form-group">
                                 <div class="row">
-                                    <div class="col-lg-4">
-                                        <p class="text-center">
-                                            <span class="glyphicon glyphicon-user icon-size"></span>
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <p class="text-left"><strong><?= $_SESSION['name']; ?></strong></p>
-                                        <p class="text-left small"><?= $_SESSION['email'] ?></p>
-                                        <p class="text-left">
-                                            <button name="logoutButton" class="btn btn-primary btn-block btn-sm">Logout
-                                            </button>
-                                        </p>
+                                    <!--<div class="col-xs-7">
+                                        <input type="checkbox" tabindex="3" name="remember" id="remember">
+                                        <label for="remember"> Remember Me</label>
+                                    </div>-->
+                                    <div class="col-xs-5 pull-right">
+                                        <input type="submit" id="login-submit" tabindex="4"
+                                               class="form-control btn btn-success" value="Log In">
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="navbar-login navbar-login-session">
+
+                            <!--<div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <p>
-                                            <a href="profile.php" class="btn btn-primary btn-block">My Profile</a>
-                                            <a href="profile.php" class="btn btn-danger btn-block">Change Password</a>
-                                        </p>
+                                        <div class="text-center">
+                                            <a href="http://phpoll.com/recover" tabindex="5"
+                                               class="forgot-password">Forgot Password?</a>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>-->
+                        </form>
+                    </div>
+                </ul>
+            </li>
+        <?php
+        // If a user has logged in.
+        else: ?>
+            <script>var isLogin = true;</script>
+            <li>
+                <button id="wishBtn" class="btn btn-default btn-lg btn-link">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </button>
+            </li>
+            <li>
+                <button id="cartBtn" class="btn btn-default btn-lg btn-link">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                </button>
+                <span class="badge badge-notify"><?php
+                    $cu_id = $_SESSION["cu_id"];
+                    $query = "select COUNT(cart_id) from cart where cu_id = $cu_id";
+                    $result = mysqli_query($connect, $query);
+                    $row = mysqli_fetch_array($result);
+                    $items_count = $row['COUNT(cart_id)'];
+                    echo $items_count ?>
+                </span>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <?php
+                    $delcom = $_SESSION['name'];
+                    ?>
+                    <strong><?= $_SESSION['name']; ?></strong>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="navbar-login">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="text-center">
+                                        <span class="glyphicon glyphicon-user icon-size"></span>
+                                    </p>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p class="text-left"><strong><?= $_SESSION['name']; ?></strong></p>
+                                    <p class="text-left small"><?= $_SESSION['email'] ?></p>
+                                    <p class="text-left">
+                                        <button name="logoutButton" class="btn btn-primary btn-block btn-sm">Logout
+                                        </button>
+                                    </p>
+                                </div>
                             </div>
-                        </li>
-                    </ul>
-                </li>
-            <?php endif; ?>
-        </ul>
-    </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="navbar-login navbar-login-session">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p>
+                                        <a href="profile.php" class="btn btn-primary btn-block">My Profile</a>
+                                        <a href="profile.php" class="btn btn-danger btn-block">Change Password</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        <?php endif; ?>
+    </ul>
+</div>
 </nav>
 
 <script>
