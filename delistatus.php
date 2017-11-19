@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Thai Food Delivery</title>
+    <title>Product Delivery</title>
     <link rel="stylesheet" type="text/css" href="vendor/css/food.css">
 </head>
 <body>
