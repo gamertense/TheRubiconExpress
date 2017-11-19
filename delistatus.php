@@ -46,7 +46,7 @@
                     <tr>
                         <td><?= $row['orderDate'] ?></td>
                         <td><?= $row['cu_name'] ?></td>
-                        <td><?= $row['f_name'] ?></td>
+                        <td><?= $row['p_name'] ?></td>
                         <td><?= $row['quantity'] ?></td>
                         <td><?= $row['address'] ?></td>
                         <td>
