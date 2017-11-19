@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="vendor/css/sweetalert2.min.css">
 <link rel="stylesheet" type="text/css" href="vendor/css/menu.css">
+<link rel="stylesheet" type="text/css" href="vendor/css/product.css">
 <style>
     #productSearch {
         width: 410px !important;
@@ -168,6 +169,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <p>
+                                        <a href="delistatus.php" class="btn btn-success btn-block">Delivery status</a>
                                         <a href="profile.php" class="btn btn-primary btn-block">My Profile</a>
                                         <a href="profile.php" class="btn btn-danger btn-block">Change Password</a>
                                     </p>
