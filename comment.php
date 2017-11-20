@@ -32,12 +32,12 @@ if(isset($_POST['submit'])){
 
  		if (!isset($_SESSION["cu_id"]))
  		{
- 			echo "login first!!";
+ 			echo "login first!!<br>";
  		}
  		else
  		{
  	?>
- 			<form action="food-info.php?fid=<?=$row['food_id']?>" method="POST">
+ 			<form action="" method="POST">
             <table>
                 <tr>
                     <td>User: </td>
@@ -46,10 +46,11 @@ if(isset($_POST['submit'])){
 
                 <tr><td colspan="2">Comment: </td></tr>
                 
-                <tr><td colspan="2"><textarea  name="comment" placeholder="Write the review here!"  ></textarea></td></tr>
+                <tr><td colspan="2"><textarea name="comment" placeholder="Write the review here!" rows="5" cols="50"  ></textarea></td></tr>
             	
-                <tr><td colspan="2"><input  type="submit" name="submit" value="comment" ></input></td></tr>
+                <tr><td colspan="2"><input type="submit" name="submit" value="comment" ></input></td></tr>
             </table>
+
         	</form>
 		
 
@@ -106,7 +107,7 @@ while ($row = $result->fetch_array()) {
 									
 
 									<?php
-										echo '<a href="del.php?delid='.$row["com_id"].'&fid='.$editid.'">';
+										echo '<a href="del.php?delid='.$row["com_id"].'&pid='.$editid.'">';
 					                ?>
 					                X
 					            	</a>
