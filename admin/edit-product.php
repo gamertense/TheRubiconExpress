@@ -48,7 +48,7 @@ if (mysqli_num_rows($result) > 0)
                 <div class="col-sm-9">
                     <div class="input-group control-group after-add-more<?php if ($i != 0) echo "1" ?>">
                         <input type="text" name="ingre[]" value="<?= $pieces[$i] ?>" class="form-control"
-                               placeholder="720p display">
+                               placeholder="spec">
                         <div class="input-group-btn">
                             <?php if ($i == 0) { ?>
                                 <button class="btn btn-success add-more" type="button"><i
@@ -68,7 +68,7 @@ if (mysqli_num_rows($result) > 0)
         <?php } ?>
         <div class="copy-fields hide">
             <div class="control-group input-group" style="margin-top:10px">
-                <input type="text" name="ingre[]" class="form-control" placeholder="720p display">
+                <input type="text" name="spec[]" class="form-control" placeholder="spec">
                 <div class="input-group-btn">
                     <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i>
                         Remove
@@ -90,7 +90,7 @@ if (mysqli_num_rows($result) > 0)
 </html>
 <script>
     $(document).ready(function () {
-        ingreFields();
+        specFields();
     });
     $("#edit-product").on('submit', (function (e) {
         e.preventDefault();
@@ -107,7 +107,7 @@ if (mysqli_num_rows($result) > 0)
             }
         });
     }));
-    function ingreFields() {
+    function specFields() {
         $(".add-more").click(function () {
             var html = $(".copy-fields").html();
             $(".after-add-more").after(html);

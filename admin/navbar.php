@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin_name']))
     header("Location: login.html");
 ?>
 
-<title>Rubicon Admin</title>
+<title>TFD Dashboard</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -31,7 +31,6 @@ if (!isset($_SESSION['admin_name']))
             <li id="menu2"><a href="add-product.php">Add product</a></li>
             <li id="menu3"><a href="editProductList.php">Edit product</a></li>
             <li id="menu4"><a href="stats.php">Statistics</a></li>
-            <li id="menu5"><a href="edituser.php">Edit User</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href=""><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
