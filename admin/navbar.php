@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin_name']))
     header("Location: login.html");
 ?>
 
-<title>TFD Dashboard</title>
+<title>Rubicon Admin</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css">
