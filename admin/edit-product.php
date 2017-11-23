@@ -47,7 +47,7 @@ if (mysqli_num_rows($result) > 0)
 
                 <div class="col-sm-9">
                     <div class="input-group control-group after-add-more<?php if ($i != 0) echo "1" ?>">
-                        <input type="text" name="ingre[]" value="<?= $pieces[$i] ?>" class="form-control"
+                        <input type="text" name="spec[]" value="<?= $pieces[$i] ?>" class="form-control"
                                placeholder="spec">
                         <div class="input-group-btn">
                             <?php if ($i == 0) { ?>
