@@ -33,6 +33,49 @@ if (mysqli_num_rows($result) > 0)
                 <div id="image_preview"><img height="250" id="previewing" src="<?= '../' . $row['image'] ?>"></div>
             </div>
         </div>
+        <!--  edit spec  -->
+        <?php
+        $ing = $row['specification'];
+        $pieces = explode("|", $ing);
+        for ($i = 0; $i < count($pieces); $i++) { ?>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">
+                    <?php if ($i == 0)
+                        echo "specification"; ?>
+                    </label>
+
+
+                <div class="col-sm-9">
+                    <div class="input-group control-group after-add-more<?php if ($i != 0) echo "1" ?>">
+                        <input type="text" name="ingre[]" value="<?= $pieces[$i] ?>" class="form-control"
+                               placeholder="720p display">
+                        <div class="input-group-btn">
+                            <?php if ($i == 0) { ?>
+                                <button class="btn btn-success add-more" type="button"><i
+                                            class="glyphicon glyphicon-plus"></i>
+                                    Add
+                                </button>
+                            <?php } else { ?>
+                                <button class="btn btn-danger remove" type="button"><i
+                                            class="glyphicon glyphicon-remove"></i>
+                                    Remove
+                                </button>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        <div class="copy-fields hide">
+            <div class="control-group input-group" style="margin-top:10px">
+                <input type="text" name="ingre[]" class="form-control" placeholder="720p display">
+                <div class="input-group-btn">
+                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i>
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-sm-9 col-sm-offset-3">

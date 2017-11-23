@@ -36,7 +36,6 @@ require_once('menu.php');
     <br>
 
 
-
 <div class="container" style="padding-bottom: 30px">
 
    
@@ -75,11 +74,21 @@ require_once('menu.php');
 </div>
 </body>
 </html>
+<!-- specification -->
+    <div class="spec">
+            <h4>Specification</h4>
+            <ul>
+                <?php
+                $ing = $row["specification"];
+                $pieces = explode("|", $ing);
+                for ($i = 0; $i < count($pieces); $i++) { ?>
+                    <li><?= $pieces[$i] ?></li>
+                <?php } ?>
 
-    
-    <br>
-     <h4>&emsp;<?php echo $row["description"]; ?></h4>
-     <br>
+            </ul>
+        </div>
+        <br>
+        <br>
 <script>
     var productID, btnString = 'cart';
 
