@@ -188,10 +188,15 @@
     $("#loginForm").on("submit", function (event) {
         event.preventDefault();
         $.post("php-action/login.php", $(this).serialize(), function (data) {
-            if (data !== "login success")
+            if (data == "Error:2"){
                 swal('Oops!', 'Incorrect email or password', 'error');
-            else
+            }
+            else if(data == "Error:1"){
+                swal('Oops!', 'You are ban!!', 'error');
+            }
+            else{
                 window.location.href = "product.php";
+            }
         });
     });
 
