@@ -32,6 +32,7 @@ if (!isset($_SESSION['admin_name']))
             <li id="menu3"><a href="editProductList.php">Edit product</a></li>
             <li id="menu4"><a href="stats.php">Statistics</a></li>
             <li id="menu5"><a href="edituser.php">Edit User</a></li>
+            <li id="menu6"><a href="addadmin.php">Add administrator</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href=""><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

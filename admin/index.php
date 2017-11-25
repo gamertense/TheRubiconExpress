@@ -16,6 +16,16 @@ if (isset($_POST['isDelivered'])) {
     if ($connect->query($sql) === FALSE)
         echo "Error updating record: " . $connect->error;
 }
+if (isset($_POST['Register'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $name = $_POST['name'];
+    
+    $query = "INSERT INTO customer (email, password, name,usertype) VALUES('$email', '$password', '$name','Admin')";
+    $connect->query($query);
+//    if ($connect->query($query) === TRUE)
+//        echo "success";
+}
 ?>
 <link rel="stylesheet" type="text/css" href="../vendor/css/dataTables.bootstrap.min.css">
 <script src="../vendor/js/jquery.dataTables.min.js"></script>
