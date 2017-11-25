@@ -12,17 +12,16 @@ require_once('../dbconfig.php');
 if (isset($_POST['isapproved'])) {
     $id = $_POST['isapproved'];
 
-    $q="SELECT isapproved from customer WHERE cu_id = $id";
+    $q = "SELECT isapproved from customer WHERE cu_id = $id";
     $results = mysqli_query($connect, $q);
     $rows = mysqli_fetch_array($results);
-    if($rows['isapproved']==1){
-   
+    if ($rows['isapproved'] == 1) {
+
         $sql = "UPDATE customer SET isapproved = 0 WHERE cu_id = $id";
-    }
-    else{
+    } else {
         $sql = "UPDATE customer SET isapproved = 1 WHERE cu_id = $id";
     }
-    
+
 
     if ($connect->query($sql) === FALSE)
         echo "Error updating record: " . $connect->error;
@@ -38,10 +37,11 @@ if (isset($_POST['isapproved'])) {
             <table class="table table-hover" id="deliveryTable">
                 <thead>
                 <tr>
-                    
+
                     <th> Name</th>
                     <th> Email</th>
-                    
+                    <th> Type</th>
+                    <th> Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,8 +63,7 @@ if (isset($_POST['isapproved'])) {
                         <tr>
                             <td><?= $row['name'] ?></td>
                             <td><?= $row['email'] ?></td>
-                            
-                           
+                            <td><?= $row['usertype'] ?></td>
                             <td>
                                 <button name="isapproved" value="<?= $row['cu_id'] ?>" class="
                             <?php if ($isapproved) echo "btn btn-success";
