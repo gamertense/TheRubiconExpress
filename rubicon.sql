@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2017 at 03:40 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Nov 25, 2017 at 04:03 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -104,10 +104,10 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cu_id`, `email`, `password`, `name`, `address`, `usertype`, `isapproved`) VALUES
-(1, 'a@a.com', '123', 'Antonio Jack', 'This is an address', '', 0),
+(1, 'a@a.com', '123', 'Antonio Jack', 'This is an address', '', 1),
 (2, 'b@b.com', '123', 'John Doe', 'John Doe\'s address', '', 1),
-(3, 'c@c.com', '123', 'Jane Doe', 'Jane Doe\'s address', '', 0),
-(6, 'a@a.com', '123', 'Chayaphat', '', 'User', 0),
+(3, 'c@c.com', '123', 'Jane Doe', 'Jane Doe\'s address', '', 1),
+(6, 'a@a.com', '123', 'Chayaphat', '', 'User', 1),
 (7, 'a@a.com', '123', 'dsdf', '', 'User', 1);
 
 -- --------------------------------------------------------
@@ -172,7 +172,7 @@ CREATE TABLE `product` (
   `name` varchar(255) NOT NULL,
   `price` double(10,2) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `specification` text NOT NULL,
   `comment` int(11) NOT NULL,
   `category_id` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -181,18 +181,18 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`product_id`, `name`, `price`, `image`, `description`, `comment`, `category_id`) VALUES
-(2, 'Samsung Galaxy S8 ', 22000.00, 'product-images/s8.jpg', 'Samsung Galaxy S8 \r\n-Samsung latest smartphone Flagship, came with top of the line gorgeous 5.8 inches 1440p super AMOLED Screen, 12MP camera and lightning fast CPU, GPU and RAM. \r\n', 0, 1),
-(3, 'iPhone X', 40000.00, 'product-images/ix.jpg', 'This chilled salad of noodles and crisp bell peppers tossed in a sesame oil-rice vinegar dressing provides a quick side dish or light meal. Great for make-ahead lunches too.', 0, 1),
-(4, 'Samsung Galaxy Note 8', 32000.00, 'product-images/note8.jpg', 'Thai Basil Chicken dish has spectacular taste even with regular basil instead of Thai or holy basil. The sauce actually acts like a glaze as the chicken mixture cooks over high heat. The recipe works best if you chop or grind your own chicken and have all ingredients prepped before you start cooking.', 0, 1),
-(5, 'google pixel 2', 33000.00, 'product-images/google.jpg', 'Tom Yum Koong,a famous Thai delicacy,is a spicy soup with shrimp in it. River shrimp sometimes use as shrimp', 0, 1),
-(7, 'HTC One A9', 15000.00, 'product-images/one.jpg', 'Porridge With Fish,a boiled rice with steamed fish this chinese style breakfast is famous for its simplicity and taste.\r\n', 0, 1),
-(8, 'Nokia 5', 9000.00, 'product-images/nikia.jpg', 'Thai Spicy Grilled Pork Salad(Yum Moo Yang)This is a spicy and sour grilled pork salad recipe that is cheap and easy . The cut of pork used is shoulder blade, which is not too fatty, but not too dry – it is just right! ', 0, 1),
-(9, 'Special Fish Cakes', 55.00, 'food-images/Thaifishcakes.jpg', 'A fishcake is a food item similar to a croquette, consisting of filleted fish or other seafood with potato patty, sometimes coated in breadcrumbs or batter, and fried.', 0, 2),
-(10, 'Casseroled Shrimps With Glass Noodles', 50.00, 'food-images/maxresdefault (1).jpg', '', 0, 2),
-(11, 'Pork Stir-Fried With Garlic And Peppercorns', 40.00, 'food-images/thai-fried-pork-with-garlic-and-pepper-recipe.jpg', '', 0, 2),
-(12, 'Fried Chicken', 35.00, 'food-images/Crispy-Fried-Chicken_exps6445_PSG143429D03_05_5b_RMS.jpg', '', 0, 2),
-(13, 'Green Chicken Curry', 40.00, 'food-images/global-recipes-01_cropped-green_curry2.jpg', '', 0, 2),
+INSERT INTO `product` (`product_id`, `name`, `price`, `image`, `specification`, `comment`, `category_id`) VALUES
+(2, 'Samsung Galaxy S8 ', 22000.00, 'product-images/s8.jpg', '1440p AMOLED Display|8 Gbs of RAM|Android 6.0|Wireless charging|USB-c', 0, 1),
+(3, 'iPhone X', 40000.00, 'product-images/ix.jpg', '1440p AMOLED display|Face-scanner|Apple Logo', 0, 1),
+(4, 'Samsung Galaxy Note 8', 32000.00, 'product-images/note8.jpg', '', 0, 1),
+(5, 'google pixel 2', 33000.00, 'product-images/google.jpg', '', 0, 1),
+(7, 'HTC One A9', 15000.00, 'product-images/one.jpg', '', 0, 1),
+(8, 'Nokia 5', 9000.00, 'product-images/nikia.jpg', '', 0, 1),
+(9, 'The Last of Us', 1470.00, 'game-images/TLOU.jpg', 'PS4|Singleplayer|Multiplayer', 0, 2),
+(10, 'Horizon Zerodawn', 1860.00, 'game-images/HZD.jpg', 'PS4|Singleplayer|Openworld', 0, 2),
+(11, 'Assassin\'s creed Origin', 1980.00, 'game-images/ACO.jpg', 'PC|PS4|XBOX1|Singleplayer|Openworld', 0, 2),
+(12, 'Zelda Breath of the Wild', 1670.00, 'game-images/Z-BOTW.jpg', 'Switch|Singleplayer|Openworld', 0, 2),
+(13, 'Civilization VI', 1540.00, 'game-images/CIV6.jpg', 'PC|Strategy', 0, 2),
 (15, 'Crispy Wonton', 30.00, 'food-images/crispy-pork-wontons.jpg', '', 0, 2),
 (17, 'Honey Rost Duck', 70.00, 'food-images/HoneyRoastedDuck.jpg', '', 0, 2),
 (18, 'Quick-Fried Water Spinach Seasoned With Chili And Soy Sauce', 45.00, 'food-images/maxresdefault (2).jpg', '', 0, 2);
@@ -271,36 +271,43 @@ ALTER TABLE `wishlist`
 --
 ALTER TABLE `cart`
   MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
   MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `cu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
 --
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
   MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Constraints for dumped tables
 --
