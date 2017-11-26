@@ -37,6 +37,7 @@ if (isset($_POST['Register'])) {
             <table class="table table-hover" id="deliveryTable">
                 <thead>
                 <tr>
+                    <th>Product</th>
                     <th>Order date</th>
                     <th>Customer name</th>
                     <th>Product name</th>
@@ -48,7 +49,7 @@ if (isset($_POST['Register'])) {
                 <tbody>
 
                 <?php
-                $query = "SELECT order_id, orderDate, c.name as cu_name, p.name as p_name, quantity, address, isDelivered
+                $query = "SELECT p.image,order_id, orderDate, c.name as cu_name, p.name as p_name, quantity, address, isDelivered
                           FROM orders o join customer c on c.cu_id = o.cu_id
                           join product p on p.product_id = o.product_id";
                 $result = mysqli_query($connect, $query);
@@ -63,6 +64,9 @@ if (isset($_POST['Register'])) {
                             $isDelivered = false;
                         ?>
                         <tr>
+
+                            <td><img src="../<?= $row['image']; ?>" class="img-responsive"
+                                  style="height: 50px;"></td>
                             <td><?= $row['orderDate'] ?></td>
                             <td><?= $row['cu_name'] ?></td>
                             <td><?= $row['p_name'] ?></td>
