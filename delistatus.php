@@ -45,8 +45,8 @@
                         $isDelivered = false;
                     ?>
                     <tr>
-                    	<td><img src="../<?= $row['image']; ?>" class="img-responsive"
-                                  style="height: 50px;"></td>
+                    	<td><img src="<?= $row['image']; ?>" class="img-responsive"
+                                  style="height: 80px;"></td>
                         <td><?= $row['orderDate'] ?></td>
                         <td><?= $row['cu_name'] ?></td>
                         <td><?= $row['p_name'] ?></td>
