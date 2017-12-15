@@ -159,14 +159,14 @@ $('button[name="removeButton"]').click(function (e) {
         $("#searchButton").click(function (e) {
             e.preventDefault();
             inputVal = productSearchSelector.val();
-            window.location.href = "edit-menu.php?s=" + inputVal;
+            window.location.href = "editProductList.php?s=" + inputVal;
         });
 
         // When user types in the search box and hits the enter key.
         productSearchSelector.keypress(function (event) {
             if (event.which == 13) {
                 inputVal = productSearchSelector.val();
-                window.location.href = "edit-menu.php?s=" + inputVal;
+                window.location.href = "editProductList.php?s=" + inputVal;
             }
         });
     }
