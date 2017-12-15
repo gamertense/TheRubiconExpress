@@ -88,6 +88,8 @@ require_once('menu.php');
         </div>
     </div>
     <?php
+    else:
+        echo "<i><h3 align='center'>Your cart is empty.</h3></i>";
     endif;
     ?>
 </div>
