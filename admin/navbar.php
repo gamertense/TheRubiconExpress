@@ -30,6 +30,7 @@ if (!isset($_SESSION['admin_name']))
             <li id="menu1"><a href="index.php">Delivery status</a></li>
             <li id="menu2"><a href="add-product.php">Add product</a></li>
             <li id="menu3"><a href="editProductList.php">Edit product</a></li>
+            <li id="menu13"><a href="add-cat.php">Add category</a></li>
             <li id="menu4"><a href="stats.php">Statistics</a></li>
             <li id="menu5" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">User

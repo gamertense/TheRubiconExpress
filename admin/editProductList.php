@@ -7,14 +7,7 @@
     <style>
         .col-item .options-cart-round {
             position: absolute;
-            right: 55%;
-            top: 17%;
-            display: none;
-        }
-
-        .col-item .options-wishlist-round {
-            position: absolute;
-            left: 55%;
+            left: 40%;
             top: 17%;
             display: none;
         }
@@ -74,12 +67,6 @@ endif;
                                     <span class="fa fa-pencil-square-o"></span>
                                 </button>
                             </div>
-                            <div class="options-wishlist-round">
-                                <button name="removeButton" class="btn btn-danger" title="Remove"
-                                        data-toggle="tooltip" value="<?php echo $row["product_id"]; ?>">
-                                    <span class="fa fa-trash"></span>
-                                </button>
-                            </div>
                             <img src="../<?php echo $row["image"]; ?>" class="img-responsive"
                                  alt="Product Image"/>
                         </div>
@@ -89,7 +76,20 @@ endif;
                                     <!--                                    <p class="details"> Lorem ipsum dolor sit amet, consectetur.. </p>-->
                                     <h1><?php echo $row["name"]; ?></h1>
                                     <br>
-                                    <span class="price-new text-danger">฿<?php echo $row["price"]; ?></span>
+                                    <span class="price-new text-danger">฿<?php
+                                        $discount = $row["discount"];
+                                        $p_new = $row["price"] - ($row['price'] * ($discount / 100));
+                                        echo $p_new . '.00'; ?></span>
+                                </div>
+                                <div class="out-stock">
+                                    <?php if ($row["in_stock"] == 0): ?>
+                                        <span class="stock text-danger">Out of Stock</span>
+                                    <?php elseif($row["discount"] != 0):
+                                        ?>
+                                        <span class="price-old">฿<?= $row["price"] ?></span>
+                                        <br>
+                                        <span class="discount">Discount <?= $discount ?>%</span>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -106,37 +106,11 @@ endif;
 
 <script src="../vendor/js/jquery.autocomplete.min.js"></script>
 <script>
-$('button[name="editButton"]').click(function (e) {
-    var productID = $(this).val();
-    window.location.href = "edit-product.php?id=" + productID;
-});
+    $('button[name="editButton"]').click(function (e) {
+        var productID = $(this).val();
+        window.location.href = "edit-product.php?id=" + productID;
+    });
 
-$('button[name="removeButton"]').click(function (e) {
-    var product_id = $(this).val();
-
-    swal({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, remove it!'
-    }).then(function () {
-        var posting = $.post("php-action/remove-product.php", {product_id: product_id});
-        posting.done(function (data) {
-            if (data === "success") {
-                swal(
-                    'Deleted!',
-                    'Your selected product has been deleted.',
-                    'success'
-                ).then(function () {
-                    location.reload();
-                });
-            }
-        });
-    })
-});
     $(document).ready(function () {
         $("#productsForm").submit(function (event) {
             // Stop form from submitting normally

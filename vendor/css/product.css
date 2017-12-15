@@ -105,7 +105,7 @@ a:hover.slidesjs-stop {
 }
 
 .product-col {
-    height: 270px;
+    height: 300px;
     float: left;
     border-bottom: 1px dashed #cdcdcd;
     padding: 0;
@@ -254,6 +254,26 @@ a:hover.slidesjs-stop {
 .col-item .price-details .price-old {
     font-size: 18px;
     text-decoration: line-through;
+}
+
+.col-item .out-stock {
+    padding-right: 10px;
+    float: right;
+}
+
+.col-item .out-stock .stock {
+    font-size: 18px;
+}
+
+.col-item .out-stock .price-old {
+    margin-right: 5px;
+    text-decoration: line-through;
+    float: right;
+}
+
+.col-item .out-stock .discount {
+    margin: 5px;
+    float: right;
 }
 
 .col-item .separator {

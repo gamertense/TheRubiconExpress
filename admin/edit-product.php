@@ -11,6 +11,8 @@ $result = mysqli_query($connect, $query);
 if (mysqli_num_rows($result) > 0)
     $row = $result->fetch_array();
 ?>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <div class="container">
     <form id="uploadimage" action="php-action/editProductSQL.php" method="post" class="form-horizontal" role="form">
@@ -45,9 +47,25 @@ if (mysqli_num_rows($result) > 0)
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-3 control-label">Discount (%)</label>
+            <div class="col-sm-9">
+                <input name="discount" value="<?= $row['discount'] ?>" class="form-control" type="number" min="0">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-3 control-label">Image File</label>
             <div class="col-sm-9 col-sm-offset-3">
                 <div id="image_preview"><img height="250" id="previewing" src="<?= '../' . $row['image'] ?>"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">In stock</label>
+            <div class="col-sm-9">
+                <?php if ($row['in_stock'] == 0): ?>
+                    <input value="1" name="stock" data-toggle="toggle" data-on="In" data-off="Out" type="checkbox">
+                <?php else: ?>
+                    <input value="0" checked name="stock" data-toggle="toggle" data-on="In" data-off="Out" type="checkbox">
+                <?php endif; ?>
             </div>
         </div>
         <!--  edit spec  -->
@@ -58,7 +76,7 @@ if (mysqli_num_rows($result) > 0)
             <div class="form-group">
                 <label class="col-sm-3 control-label">
                     <?php if ($i == 0)
-                        echo "specification"; ?>
+                        echo "Specification"; ?>
                     </label>
 
 

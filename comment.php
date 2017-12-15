@@ -1,137 +1,89 @@
- <?php 
+<link rel="stylesheet" type="text/css" href="vendor/css/comment.css">
+<?php
 require('dbconfig.php');
-if(isset($_POST['submit'])){
-	$name=$_SESSION['name'];
-	$comment=$_POST['comment'];
-	$submit=$_POST['submit'];
-	if($name&&$comment)
-	{
-		$q = "INSERT INTO comment (com_name,com_comment,food_id) VALUE ('$name','$comment','$editid')";
-		$result = $connect->query($q);
-	}
-	else
-	{
-		echo "Please fill out";
-	}
+if (isset($_POST['submit'])) {
+    $name = $_SESSION['name'];
+    $comment = $_POST['comment'];
+    $submit = $_POST['submit'];
+    if ($name && $comment) {
+        $q = "INSERT INTO comment (com_name,com_comment,product_id) VALUE ('$name','$comment','$pid')";
+        $result = $connect->query($q);
+    } else {
+        echo "Please fill out";
+    }
 
 }
- ?>
+?>
 
+<div class="container">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <div class="row">
+        <!-- Contenedor Principal -->
+        <div class="comments-container">
+            <h2>Comments</h2>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Comment Box</title>
-	<link rel="stylesheet" type="text/css" href="/MainProject/comment/vendor/css/comment.css">
-	<script type="text/javascript" src="/js/jquery.js"></script>
-	<script type="text/javascript" src="/js/script.js"></script>
-</head>
-<body>
-	<!-- Comment Box -->
- 	<?php
+            <!-- Comment Box -->
+            <?php
+            if (!isset($_SESSION["cu_id"])) {
+                echo "login first!!<br>";
+            } else {
+                ?>
+                <form method="POST">
+                    <table>
+                        <tr>
+                            <td>User:</td>
+                            <td><?= $_SESSION['name']; ?></td>
+                        </tr>
 
- 		if (!isset($_SESSION["cu_id"]))
- 		{
- 			echo "login first!!<br>";
- 		}
- 		else
- 		{
- 	?>
- 			<form action="" method="POST">
-            <table>
-                <tr>
-                    <td>User: </td>
-                    <td><?= $_SESSION['name']; ?></td>
-                </tr>
+                        <tr>
+                            <td colspan="2">Comment:</td>
+                        </tr>
 
-                <tr><td colspan="2">Comment: </td></tr>
-                
-                <tr><td colspan="2"><textarea name="comment" placeholder="Write the review here!" rows="5" cols="50"  ></textarea></td></tr>
-            	
-                <tr><td colspan="2"><input type="submit" name="submit" value="comment" ></input></td></tr>
-            </table>
+                        <tr>
+                            <td colspan="2"><textarea name="comment" placeholder="Write the review here!" rows="5"
+                                                      cols="50" class="form-control"></textarea></td>
+                        </tr>
 
-        	</form>
-		
+                        <tr>
+                            <td colspan="2">
+                                <input type="submit" class="btn btn-primary" name="submit" value="Leave a comment">
+                        </tr>
+                    </table>
 
-    <?php
- 		}
- 	?>
+                </form>
+            <?php } ?>
 
-
-
-
-
-
-	<div class="wrapper">
-		<div class="page-data">
-			<?php echo $row["name"]; ?>
-		</div>
-		<div class="comment-wrapper">
-
-			<h3 class="comment-title">Review</h3>
-
-
-			<div class="comment-list">
-				<ul class="comment-holder-ul">
-<?php 
-
-$q = "select com_id,com_name,com_comment from comment WHERE food_id = '$editid'";
-$result = $connect->query($q);
-while ($row = $result->fetch_array()) {
-	# code...
- ?>
-					<li class="comment-holder" id="_1">
-						<div class="user-img">
-							<img src="images/programmer.png" class="user-img-pic" />
-							
-						</div>
-						<div class="comment-body">
-
-
-							<div class="username-field">
-								<?=$row['com_name']?>
-							</div>
-							<div class="comment-text">
-								<?=$row['com_comment']?>
-
-							</div>
-						</div>
-			<?php
-
-			if ($delcom == $row['com_name']) {
-			?>
-						<div class="comment-button-holder">
-							<ul>
-								<li class="delete-btn">
-									
-
-									<?php
-										echo '<a href="del.php?delid='.$row["com_id"].'&pid='.$editid.'">';
-					                ?>
-					                X
-					            	</a>
-								</li>
-							</ul>
-						</div>
-			<?php
-			}
-			?>
-
-					</li>
-<?php } ?>
-
-				</ul>
-
-
-			</div>
-
-		</div>
-
-
-	</div>
-	<br>
-	<br>
-
-</body>
-</html>
+            <ul id="comments-list" class="comments-list">
+                <?php
+                $pid = $_GET['pid'];
+                $q = "select com_id,com_name,com_comment from comment WHERE product_id = '$pid'";
+                $result = $connect->query($q);
+                while ($row = $result->fetch_array()) {
+                    # code...
+                    ?>
+                    <li>
+                        <div class="comment-main-level">
+                            <!-- Avatar -->
+                            <div class="comment-avatar"><img
+                                        src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
+                                        alt=""></div>
+                            <!-- Contenedor del Comentario -->
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name by-author"><?= $row['com_name'] ?></h6>
+                                    <?php if ($_SESSION['name'] == $row['com_name']) {
+                                        echo '<a href="del-comment.php?delid=' . $row["com_id"] . '&pid=' . $pid . '">';
+                                        ?>
+                                        <i class="fa fa-trash-o"></i></a>
+                                    <?php } ?>
+                                </div>
+                                <div class="comment-content"><?= $row['com_comment'] ?></div>
+                            </div>
+                        </div>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
+</div>
