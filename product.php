@@ -19,8 +19,6 @@ if (isset($_POST['Register'])) {
 }
 ?>
 
-?>
-
 <div class="container" style="padding-bottom: 30px">
     <h2 align="center">Select Products</h2><br>
     <?php
