@@ -18,21 +18,40 @@ if (isset($_POST['Register'])) {
 //        echo "success";
 }
 ?>
-
+<script src="vendor/js/product.js"></script>
 <div class="container" style="padding-bottom: 30px">
-    <h2 align="center">Select Products</h2><br>
-    <?php
+<?php
     if (isset($_GET['catID'])) {
         $categoryID = $_GET['catID'];
         $query = "SELECT * FROM product WHERE category_id = $categoryID";
-    } else if (!isset($_GET['s']))
+        $query2 = "SELECT * FROM category WHERE category_id = $categoryID";
+        $result = mysqli_query($connect, $query2);
+        $row = $result->fetch_array();
+        $slideShowOn = false;
+    } else if (!isset($_GET['s'])) {
         $query = "SELECT * FROM product ORDER BY product_id";
-    else {
+        $slideShowOn = true;
+    } else {
         $product_name = $_GET['s'];
         $query = "SELECT * FROM product WHERE name LIKE '%$product_name%'";
+        $slideShowOn = true;
     }
 
-    $result = mysqli_query($connect, $query); ?>
+    $result = mysqli_query($connect, $query);
+    if ($slideShowOn) { ?>
+        <script src="vendor/js/jquery.slides.min.js"></script>
+        <div class="container">
+            <div id="slides">
+                <img src="images/promo1.jpg">
+                <img src="images/promo2.png">
+                <img src="images/promo3.png">
+            </div>
+        </div>
+        <script>slideShow()</script>
+    <?php } ?>
+    <h2 align="center">Select product
+        <?php if (isset($query2))
+            echo "(" . $row['category_name'] . ")" ?></h2><br>
     <form method="post" id="productsForm">
         <?php
         if (mysqli_num_rows($result) > 0):
@@ -83,82 +102,3 @@ if (isset($_POST['Register'])) {
 <?php require_once('footer.php') ?>
 </body>
 </html>
-
-<script>
-    var productID, btnString = 'cart';
-
-    $(document).ready(function () {
-        $(".col-sm-4").fadeIn("slow");
-        initialLoad();
-    });
-
-    function initialLoad() {
-        $('#menu1').addClass('active');
-        $('[data-toggle="tooltip"]').tooltip();
-
-        $('button[name="addButton"]').click(function () {
-            btnString = 'cart';
-            productID = $(this).val();
-        });
-        $('button[name="wishButton"]').click(function () {
-            productID = $(this).val();
-            btnString = 'wish';
-        });
-        $('button[name="infoButton"]').click(function () {
-            productID = $(this).val();
-            btnString = 'info';
-        });
-
-        // Attach a submit handler to the form
-        $("#productsForm").submit(function (event) {
-            // Stop form from submitting normally
-            event.preventDefault();
-            if (!isLogin && btnString !== 'info') {
-                swal(
-                    'Please login first!',
-                    '',
-                    'error'
-                );
-                return;
-            }
-            // Send the data using post
-            var posting;
-            if (btnString === 'cart')
-                posting = $.post("php-action/add-cart.php", {hidden_id: productID});
-            else if (btnString === 'info')
-                window.location = "product-info.php?pid=" + productID;
-            else
-                posting = $.post("php-action/add-wishlist.php", {hidden_id: productID});
-            // Put the results in a div
-            posting.done(function (data) {
-                switch (data) {
-                    case "success-cart":
-                        swal(
-                            'Added!',
-                            'Your selected product has been added to cart',
-                            'success'
-                        ).then(function () {
-                            location.reload();
-                        });
-                        break;
-                    case "success-wishlist":
-                        swal(
-                            'Added!',
-                            'Your selected product has been added to wishlist',
-                            'success'
-                        );
-                        break;
-                    case "already added to wishlist":
-                        swal(
-                            'product exists!',
-                            'This product is ' + data,
-                            'warning'
-                        );
-                        break;
-                    default:
-                        alert(data);
-                }
-            });
-        });
-    }
-</script>
