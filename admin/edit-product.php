@@ -22,6 +22,23 @@ if (mysqli_num_rows($result) > 0)
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-3 control-label">Product Category</label>
+            <div class="col-sm-9">
+                <select class="form-control" name="category">
+                    <?php
+                    $cat_id = $row['category_id'];
+                    
+                    $query = "SELECT * FROM category";
+                    $result = mysqli_query($connect, $query);
+                    while ($row2 = mysqli_fetch_array($result)):
+                        ?>
+                        <option value="<?= $row2['category_id'] ?>"
+                            <?php if ($row2['category_id'] == $cat_id) echo "selected" ?>><?= $row2['category_name'] ?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-3 control-label">Price</label>
             <div class="col-sm-9">
                 <input value="<?= $row['price'] ?>" name="productPrice" placeholder="Price" class="form-control">
