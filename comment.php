@@ -8,9 +8,12 @@ if (isset($_POST['submit'])) {
     if ($name && $comment) {
         $q = "INSERT INTO comment (com_name,com_comment,product_id) VALUE ('$name','$comment','$pid')";
         $result = $connect->query($q);
-    } else {
-        echo "Please fill out";
-    }
+    } else { ?>
+        <script> swal('Oops...',
+                      'Please fill in the comment box!',
+                      'error'
+                        ) </script>
+    <?php }
 
 }
 ?>
@@ -66,7 +69,7 @@ if (isset($_POST['submit'])) {
                         <div class="comment-main-level">
                             <!-- Avatar -->
                             <div class="comment-avatar"><img
-                                        src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
+                                        src="images/programmer.png"
                                         alt=""></div>
                             <!-- Contenedor del Comentario -->
                             <div class="comment-box">

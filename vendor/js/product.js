@@ -78,7 +78,7 @@ function initialLoad() {
 function slideShow() {
     $("#slides").slidesjs({
         width: 740, //Original 940
-        height: 270, //Original 528
+        height: 300, //Original 528
         play: {
             active: true,
             auto: true,

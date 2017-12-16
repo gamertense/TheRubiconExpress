@@ -62,6 +62,7 @@
 
         if (!isset($_SESSION["cu_id"])):
             $delcom = "nullx";
+            $_SESSION["name"]="null";
             ?>
 
             <script>var isLogin = false;</script>

@@ -11,8 +11,8 @@ $result = mysqli_query($connect, $query);
 if (mysqli_num_rows($result) > 0)
     $row = $result->fetch_array();
 ?>
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<link href="../vendor/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="../vendor/js/bootstrap-toggle.min.js"></script>
 
 <div class="container">
     <form id="uploadimage" action="php-action/editProductSQL.php" method="post" class="form-horizontal" role="form">
