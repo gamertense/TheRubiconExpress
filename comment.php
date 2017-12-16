@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
             <!-- Comment Box -->
             <?php
             if (!isset($_SESSION["cu_id"])) {
-                echo "login first!!<br>";
+                echo "Please login first!!<br>";
             } else {
                 ?>
                 <form method="POST">
